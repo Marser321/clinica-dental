@@ -27,7 +27,15 @@ export function SplineScene({
 
     useEffect(() => {
         setIsClient(true);
-    }, []);
+        // Timeout para forzar timeout si Spline no responde por error 403 o red
+        const timer = setTimeout(() => {
+            if (!isLoaded) {
+                console.warn(`Timeout loading Spline scene: ${scene}`);
+                setHasError(true);
+            }
+        }, 4000);
+        return () => clearTimeout(timer);
+    }, [isLoaded, scene]);
 
     const handleLoad = () => {
         setIsLoaded(true);
@@ -41,7 +49,7 @@ export function SplineScene({
 
     // Componente de imagen estática de respaldo
     const FallbackView = () => (
-        <div className={`relative w-full h-full flex items-center justify-center ${className}`}>
+        <div className={`relative w-full h-full flex items-center justify-center ${className} animate-in fade-in duration-500`}>
             {fallbackImageSrc && (
                 <Image
                     src={fallbackImageSrc}

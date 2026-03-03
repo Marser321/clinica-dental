@@ -93,23 +93,13 @@ export function ServicesSection() {
                                             border: `1px solid ${servicio.colorHex}20`,
                                         }}
                                     >
-                                        {servicio.splineUrl ? (
-                                            <div className="w-full h-full transform scale-[1.5] pointer-events-none">
-                                                <SplineScene
-                                                    scene={servicio.splineUrl}
-                                                    fallbackImageSrc={`/images/servicios/${servicio.slug}.png`}
-                                                    fallbackImageAlt={servicio.titulo}
-                                                />
-                                            </div>
-                                        ) : (
-                                            <Image
-                                                src={`/images/servicios/${servicio.slug}.png`}
-                                                alt={servicio.titulo}
-                                                width={50}
-                                                height={50}
-                                                className="object-contain drop-shadow-[0_4px_10px_rgba(8,145,178,0.15)]"
-                                            />
-                                        )}
+                                        <Image
+                                            src={`/images/servicios/${servicio.slug}.png`}
+                                            alt={servicio.titulo}
+                                            width={50}
+                                            height={50}
+                                            className="object-contain drop-shadow-[0_4px_10px_rgba(8,145,178,0.15)]"
+                                        />
                                     </div>
 
                                     {/* Texto */}
