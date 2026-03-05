@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { InsforgeProvider } from './providers';
 import './globals.css';
 
 const inter = Inter({
@@ -41,7 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="bg-bg-primary text-text-primary font-body" suppressHydrationWarning>
-        {children}
+        <InsforgeProvider>
+          {children}
+        </InsforgeProvider>
       </body>
     </html>
   );

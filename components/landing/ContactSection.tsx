@@ -41,21 +41,21 @@ export function ContactSection() {
     };
 
     return (
-        <section id="contacto" className="section-padding bg-white relative overflow-hidden">
+        <section id="contacto" className="section-padding bg-[#111111] relative overflow-hidden">
             {/* Decoración */}
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-cyan-50/50 blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-red-900/10 blur-[100px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Título */}
                 <AnimatedSection className="text-center mb-16">
-                    <span className="text-accent text-sm font-semibold uppercase tracking-widest">
+                    <span className="text-red-500 text-sm font-semibold uppercase tracking-widest drop-shadow-sm">
                         Contacto
                     </span>
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-slate-900">
+                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-white drop-shadow-md">
                         Agendá tu{' '}
-                        <span className="text-gradient">consulta</span>
+                        <span className="text-red-500 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">consulta</span>
                     </h2>
-                    <p className="text-slate-500 max-w-xl mx-auto">
+                    <p className="text-slate-300 max-w-xl mx-auto">
                         Estamos para ayudarte. Escribinos por WhatsApp o completá el formulario
                         y te responderemos a la brevedad.
                     </p>
@@ -72,14 +72,14 @@ export function ContactSection() {
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center gap-4 bg-white rounded-2xl p-6 group cursor-pointer border border-green-100 shadow-[0_4px_24px_rgba(5,150,105,0.06)] hover:shadow-[0_8px_32px_rgba(5,150,105,0.12)] transition-shadow"
+                                className="flex items-center gap-4 bg-black/40 backdrop-blur-md rounded-2xl p-6 group cursor-pointer border border-green-900/30 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:border-green-500/50 hover:shadow-[0_8px_32px_rgba(16,185,129,0.15)] transition-all"
                             >
-                                <div className="w-14 h-14 rounded-xl bg-green-50 border border-green-200/60 flex items-center justify-center group-hover:bg-green-100 transition-colors flex-shrink-0">
-                                    <MessageCircle size={26} className="text-green-600" />
+                                <div className="w-14 h-14 rounded-xl bg-green-950/40 border border-green-900/30 flex items-center justify-center group-hover:bg-green-900/60 transition-colors flex-shrink-0">
+                                    <MessageCircle size={26} className="text-green-500" />
                                 </div>
                                 <div>
-                                    <h4 className="font-display font-bold text-slate-800">WhatsApp</h4>
-                                    <p className="text-green-600 text-sm font-medium">Escribinos ahora →</p>
+                                    <h4 className="font-display font-bold text-white">WhatsApp</h4>
+                                    <p className="text-green-500 text-sm font-medium">Escribinos ahora →</p>
                                 </div>
                             </motion.a>
 
@@ -99,12 +99,12 @@ export function ContactSection() {
                                         transition={{ delay: 0.2 + i * 0.1 }}
                                         className="flex items-center gap-4"
                                     >
-                                        <div className="w-10 h-10 rounded-lg bg-cyan-50 border border-cyan-100 flex items-center justify-center flex-shrink-0">
-                                            <item.icono size={18} className="text-accent" />
+                                        <div className="w-10 h-10 rounded-lg bg-red-950/40 border border-red-900/30 flex items-center justify-center flex-shrink-0">
+                                            <item.icono size={18} className="text-red-500" />
                                         </div>
                                         <div>
                                             <p className="text-slate-400 text-xs uppercase tracking-wider">{item.label}</p>
-                                            <p className="text-slate-800 text-sm font-medium">{item.valor}</p>
+                                            <p className="text-slate-200 text-sm font-medium">{item.valor}</p>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -115,12 +115,12 @@ export function ContactSection() {
                     {/* Formulario */}
                     <AnimatedSection direction="right" delay={0.2}>
                         <form
-                            className="bg-white rounded-2xl p-6 sm:p-8 space-y-5 border border-slate-100 shadow-[0_8px_40px_rgba(15,23,42,0.06)]"
+                            className="bg-black/40 backdrop-blur-md rounded-2xl p-6 sm:p-8 space-y-5 border border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
                             onSubmit={handleSubmit}
                         >
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label htmlFor="nombre" className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">
+                                    <label htmlFor="nombre" className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
                                         Nombre
                                     </label>
                                     <input
@@ -130,11 +130,11 @@ export function ContactSection() {
                                         value={formData.nombre}
                                         onChange={handleChange}
                                         placeholder="Tu nombre"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:border-cyan-300 focus:ring-2 focus:ring-cyan-100 transition-colors"
+                                        className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all font-sans"
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="telefono" className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">
+                                    <label htmlFor="telefono" className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
                                         Teléfono
                                     </label>
                                     <input
@@ -143,20 +143,20 @@ export function ContactSection() {
                                         value={formData.telefono}
                                         onChange={handleChange}
                                         placeholder="Tu teléfono"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:border-cyan-300 focus:ring-2 focus:ring-cyan-100 transition-colors"
+                                        className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all font-sans"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label htmlFor="servicio" className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">
+                                <label htmlFor="servicio" className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
                                     Servicio de interés
                                 </label>
                                 <select
                                     id="servicio"
                                     value={formData.servicio}
                                     onChange={handleChange}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-cyan-300 focus:ring-2 focus:ring-cyan-100 transition-colors appearance-none"
+                                    className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all appearance-none [&>option]:bg-[#1A1A1A]"
                                 >
                                     <option value="">Seleccioná un servicio</option>
                                     <option value="Blanqueamiento Dental">Blanqueamiento Dental</option>
@@ -174,7 +174,7 @@ export function ContactSection() {
                             </div>
 
                             <div>
-                                <label htmlFor="mensaje" className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">
+                                <label htmlFor="mensaje" className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
                                     Mensaje
                                 </label>
                                 <textarea
@@ -184,7 +184,7 @@ export function ContactSection() {
                                     value={formData.mensaje}
                                     onChange={handleChange}
                                     placeholder="Contanos en qué podemos ayudarte..."
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-300 focus:outline-none focus:border-cyan-300 focus:ring-2 focus:ring-cyan-100 transition-colors resize-none"
+                                    className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all resize-none font-sans"
                                 />
                             </div>
 

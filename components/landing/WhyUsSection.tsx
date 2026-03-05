@@ -68,17 +68,17 @@ const estadisticas = [
 
 export function WhyUsSection() {
     return (
-        <section id="por-que" className="section-padding bg-bg-secondary relative overflow-hidden">
+        <section id="por-que" className="section-padding bg-[#0A0A0A] relative overflow-hidden">
             {/* Decoración */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cyan-50/40 blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-900/10 blur-[120px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Título */}
                 <AnimatedSection className="text-center mb-16">
-                    <span className="text-accent text-sm font-semibold uppercase tracking-widest">
+                    <span className="text-red-500 text-sm font-semibold uppercase tracking-widest drop-shadow-sm">
                         ¿Por qué elegirnos?
                     </span>
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-slate-900">
+                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-white drop-shadow-md">
                         La diferencia está en los{' '}
                         <span className="text-gradient">detalles</span>
                     </h2>
@@ -88,17 +88,17 @@ export function WhyUsSection() {
                 <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-20">
                     {diferenciadores.map((item, i) => (
                         <motion.div key={i} variants={staggerItemVariants}>
-                            <TiltCard className="h-full bg-white rounded-2xl p-6 sm:p-8 group border border-slate-100 shadow-[0_4px_24px_rgba(15,23,42,0.05)] hover:shadow-[0_15px_50px_rgba(8,145,178,0.15)] hover:border-cyan-200/50 transition-colors duration-400">
+                            <TiltCard className="h-full bg-black/40 backdrop-blur-md rounded-2xl p-6 sm:p-8 group border border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_50px_rgba(220,38,38,0.2)] hover:border-red-500/30 transition-colors duration-400">
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: 5 }}
-                                    className="w-14 h-14 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-5 group-hover:bg-cyan-100 transition-colors duration-300 relative z-10"
+                                    className="w-14 h-14 rounded-xl bg-red-950/40 border border-red-900/30 flex items-center justify-center mb-5 group-hover:bg-red-900/50 transition-colors duration-300 relative z-10"
                                 >
-                                    <item.icono size={26} className="text-accent" />
+                                    <item.icono size={26} className="text-red-500" />
                                 </motion.div>
-                                <h3 className="font-display font-bold text-xl text-slate-800 mb-2 relative z-10">
+                                <h3 className="font-display font-bold text-xl text-white mb-2 relative z-10">
                                     {item.titulo}
                                 </h3>
-                                <p className="text-slate-400 text-sm leading-relaxed relative z-10">
+                                <p className="text-slate-300 text-sm leading-relaxed relative z-10">
                                     {item.descripcion}
                                 </p>
                             </TiltCard>
@@ -108,12 +108,13 @@ export function WhyUsSection() {
 
                 {/* Estadísticas */}
                 <AnimatedSection>
-                    <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-[0_12px_50px_rgba(15,23,42,0.08)] border border-slate-100">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="bg-[#111111]/80 backdrop-blur-lg rounded-3xl p-8 sm:p-12 shadow-[0_12px_50px_rgba(0,0,0,0.6)] border border-white/5 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-red-600/5 to-transparent pointer-events-none" />
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
                             {estadisticas.map((stat, i) => (
                                 <div key={i} className="text-center">
                                     <AnimatedCounter target={stat.valor} suffix={stat.sufijo} />
-                                    <p className="text-slate-400 text-sm mt-2">{stat.label}</p>
+                                    <p className="text-slate-300 text-sm mt-2">{stat.label}</p>
                                 </div>
                             ))}
                         </div>

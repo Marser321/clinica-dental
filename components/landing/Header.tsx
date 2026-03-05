@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone } from 'lucide-react';
 import { BookingModal } from '@/components/ui/BookingModal';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@insforge/nextjs';
 
 const navLinks = [
     { label: 'Inicio', href: '#inicio' },
@@ -41,19 +42,19 @@ export function Header() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? 'bg-white/90 backdrop-blur-xl shadow-[0_1px_20px_rgba(15,23,42,0.06)] border-b border-slate-100'
+                    ? 'bg-black/80 backdrop-blur-xl shadow-[0_1px_20px_rgba(220,38,38,0.08)] border-b border-white/5'
                     : 'bg-transparent'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 md:h-20">
                         <Link href="/" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-cyan-500 flex items-center justify-center shadow-glow-accent group-hover:shadow-glow-accent-strong transition-shadow duration-300">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center shadow-glow-accent group-hover:shadow-glow-accent-strong transition-shadow duration-300 border border-red-500/20">
                                 <span className="text-white font-display font-bold text-lg">OP</span>
                             </div>
                             <div className="hidden sm:flex flex-col">
-                                <span className="font-display font-bold text-sm tracking-wide text-text-primary">OdontoPro</span>
-                                <span className="text-xs text-text-muted -mt-0.5">Clínica Dental</span>
+                                <span className="font-display font-bold text-sm tracking-wide text-white">OdontoPro</span>
+                                <span className="text-xs text-slate-400 -mt-0.5">Clínica Dental</span>
                             </div>
                         </Link>
 
@@ -63,7 +64,7 @@ export function Header() {
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-accent transition-colors duration-300 rounded-lg hover:bg-cyan-50/60"
+                                    className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-red-500 transition-colors duration-300 rounded-lg hover:bg-white/5"
                                 >
                                     {link.label}
                                 </a>
@@ -71,11 +72,20 @@ export function Header() {
                         </nav>
 
                         {/* CTA Desktop */}
-                        <div className="hidden lg:flex items-center gap-3">
-                            <a href="tel:+59800000000" className="flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors">
+                        <div className="hidden lg:flex items-center gap-4">
+                            <a href="tel:+59800000000" className="flex items-center gap-2 text-sm text-slate-400 hover:text-red-500 transition-colors">
                                 <Phone size={16} />
                                 <span>Llamar</span>
                             </a>
+                            <div className="w-px h-6 bg-white/10 mx-2"></div>
+                            <SignedOut>
+                                <SignInButton>
+                                    <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Iniciar sesión</button>
+                                </SignInButton>
+                            </SignedOut>
+                            <SignedIn>
+                                <UserButton />
+                            </SignedIn>
                             <button
                                 onClick={() => setIsBookingOpen(true)}
                                 className="btn-primary text-sm !py-2.5 !px-5"
@@ -87,7 +97,7 @@ export function Header() {
                         {/* Hamburger Mobile */}
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
-                            className="lg:hidden w-10 h-10 flex items-center justify-center text-text-primary rounded-lg hover:bg-slate-100 transition-colors"
+                            className="lg:hidden w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors"
                             aria-label="Menú"
                         >
                             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -104,7 +114,7 @@ export function Header() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl lg:hidden"
+                        className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl lg:hidden"
                     >
                         <motion.nav
                             initial={{ opacity: 0, y: 20 }}
@@ -121,17 +131,31 @@ export function Header() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.15 + i * 0.05 }}
-                                    className="text-2xl font-display font-semibold text-text-primary hover:text-accent transition-colors"
+                                    className="text-2xl font-display font-semibold text-white hover:text-red-500 transition-colors"
                                 >
                                     {link.label}
                                 </motion.a>
                             ))}
+
+                            <div className="w-full max-w-[200px] h-px bg-white/10 my-2"></div>
+
+                            <SignedOut>
+                                <SignInButton>
+                                    <button className="text-xl font-display font-medium text-slate-300 hover:text-white transition-colors">Iniciar sesión</button>
+                                </SignInButton>
+                            </SignedOut>
+                            <SignedIn>
+                                <div className="scale-125 my-2 flex justify-center">
+                                    <UserButton />
+                                </div>
+                            </SignedIn>
+
                             <button
                                 onClick={() => {
                                     setMobileOpen(false);
                                     setIsBookingOpen(true);
                                 }}
-                                className="btn-primary mt-4 text-lg"
+                                className="btn-primary w-[200px] text-lg mt-4"
                             >
                                 Agendar Cita
                             </button>

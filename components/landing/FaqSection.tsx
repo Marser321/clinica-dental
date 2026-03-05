@@ -36,19 +36,19 @@ export function FaqSection() {
     };
 
     return (
-        <section className="section-padding bg-slate-50 relative overflow-hidden">
+        <section className="section-padding bg-[#0A0A0A] relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
                 <AnimatedSection className="text-center mb-16 lg:mb-20">
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-100 to-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm border border-cyan-100/50">
-                        <MessageCircleQuestion size={28} className="text-cyan-500" />
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-950/40 to-black/60 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(220,38,38,0.15)] border border-red-900/30">
+                        <MessageCircleQuestion size={28} className="text-red-500" />
                     </div>
-                    <span className="text-cyan-600 text-sm font-semibold uppercase tracking-widest bg-cyan-50 px-3 py-1 rounded-full inline-block mb-3">
+                    <span className="text-red-500 text-sm font-semibold uppercase tracking-widest bg-red-950/30 border border-red-900/30 px-3 py-1 rounded-full inline-block mb-3 drop-shadow-sm">
                         Dudas Comunes
                     </span>
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-slate-900">
+                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-white drop-shadow-md">
                         Preguntas <span className="text-gradient">Frecuentes</span>
                     </h2>
-                    <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
+                    <p className="text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
                         Resolvemos tus principales inquietudes para que vengas a tu próxima consulta con total tranquilidad y confianza.
                     </p>
                 </AnimatedSection>
@@ -65,14 +65,14 @@ export function FaqSection() {
                                 <button
                                     onClick={() => toggleFaq(index)}
                                     className={`w-full text-left px-6 py-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 ${isActive
-                                            ? 'bg-white border-cyan-300 shadow-[0_8px_30px_rgba(8,145,178,0.12)]'
-                                            : 'bg-white border-slate-200 hover:border-cyan-200 hover:shadow-md'
+                                        ? 'bg-black/60 border-red-500/50 shadow-[0_4px_15px_rgba(220,38,38,0.2)]'
+                                        : 'bg-[#111111]/80 backdrop-blur-md border-white/5 hover:border-red-500/30 hover:shadow-[0_4px_15px_rgba(0,0,0,0.5)]'
                                         }`}
                                 >
-                                    <span className={`font-semibold text-lg md:text-xl transition-colors ${isActive ? 'text-accent' : 'text-slate-800 group-hover:text-cyan-800'}`}>
+                                    <span className={`font-semibold text-lg md:text-xl transition-colors ${isActive ? 'text-white drop-shadow-sm' : 'text-slate-300 group-hover:text-white'}`}>
                                         {faq.pregunta}
                                     </span>
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? 'bg-cyan-100 text-accent' : 'bg-slate-100 text-slate-500 group-hover:bg-cyan-50 group-hover:text-cyan-600'}`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? 'bg-red-900/50 text-red-500' : 'bg-white/5 text-slate-400 group-hover:bg-red-950/40 group-hover:text-red-400'}`}>
                                         {isActive ? <Minus size={18} /> : <Plus size={18} />}
                                     </div>
                                 </button>
@@ -86,7 +86,7 @@ export function FaqSection() {
                                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="p-6 text-slate-600 leading-relaxed bg-white/50 border-x border-b border-cyan-100 rounded-b-2xl -mt-2 pt-6">
+                                            <div className="p-6 text-slate-300 leading-relaxed bg-black/40 border-x border-b border-red-900/20 rounded-b-2xl -mt-2 pt-6">
                                                 {faq.respuesta}
                                             </div>
                                         </motion.div>
@@ -99,8 +99,8 @@ export function FaqSection() {
 
                 {/* CTA Auxiliar */}
                 <AnimatedSection delay={0.4} className="mt-12 text-center">
-                    <p className="text-slate-500 mb-4">¿Tenés alguna otra consulta?</p>
-                    <a href="#contacto" className="text-accent font-semibold hover:underline">
+                    <p className="text-slate-400 mb-4">¿Tenés alguna otra consulta?</p>
+                    <a href="#contacto" className="text-red-500 font-semibold hover:underline">
                         Escribinos directamente &rarr;
                     </a>
                 </AnimatedSection>

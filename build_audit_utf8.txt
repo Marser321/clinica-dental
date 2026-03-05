@@ -1,0 +1,41 @@
+﻿
+> ai-studio-applet@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.5.12
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 15.5s
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ Ô£ô Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Ôöî Ôùï /                                    16.5 kB         175 kB
+Ôö£ Ôùï /_not-found                            994 B         103 kB
+Ôö£ ãÆ /api/auth                              123 B         102 kB
+Ôö£ ãÆ /dashboard                           2.71 kB         185 kB
+Ôö£ Ôùï /dashboard/agenda                    9.93 kB         174 kB
+Ôö£ Ôùï /dashboard/membresias                2.96 kB         145 kB
+Ôö£ Ôùï /dashboard/pacientes                 1.93 kB         148 kB
+Ôö£ ãÆ /dashboard/pacientes/[id]            3.51 kB         149 kB
+Ôöö ãÆ /servicios/[slug]                     582 kB         740 kB
++ First Load JS shared by all             102 kB
+  Ôö£ chunks/255-a41b0d888672637a.js       45.8 kB
+  Ôö£ chunks/4bd1b696-21f374d1156f834a.js  54.2 kB
+  Ôöö other shared chunks (total)          2.19 kB
+
+
+ãÆ Middleware                             33.6 kB
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+
