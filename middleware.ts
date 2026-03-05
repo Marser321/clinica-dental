@@ -1,12 +1,10 @@
-import { InsforgeMiddleware } from '@insforge/nextjs/middleware';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export default InsforgeMiddleware({
-    baseUrl: process.env.NEXT_PUBLIC_INSFORGE_BASE_URL || 'https://eizdi5ax.us-west.insforge.app',
-    publicRoutes: ['/(.*)'], // Todas las rutas públicas (Bypass de Auth para la Demo)
-});
+export function middleware(request: NextRequest) {
+  return NextResponse.next();
+}
 
 export const config = {
-    matcher: [
-        '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-    ],
+  matcher: [],
 };
