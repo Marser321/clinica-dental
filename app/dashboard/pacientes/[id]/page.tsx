@@ -6,10 +6,13 @@ import { ArrowLeft, Phone, Mail, Calendar, Activity, AlertCircle, Clock } from '
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { toast } from 'sonner';
+import { useState } from 'react';
+import { BookingModal } from '@/components/ui/BookingModal';
 
 export default function FichaPacientePage() {
     const params = useParams();
     const id = params?.id as string;
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     // TODO: Fetch desde InsForge usando el ID
     const patient = {
@@ -44,7 +47,7 @@ export default function FichaPacientePage() {
                 </div>
                 <div className="ml-auto flex gap-3">
                     <button onClick={() => toast.info('La edición de perfil se implementará en la próxima fase.')} className="btn-secondary">Editar Perfil</button>
-                    <button onClick={() => toast.info('Redirigiendo a reserva de nueva cita...')} className="btn-primary">Nueva Cita</button>
+                    <button onClick={() => setIsBookingOpen(true)} className="btn-primary">Nueva Cita</button>
                 </div>
             </motion.div>
 
@@ -164,6 +167,8 @@ export default function FichaPacientePage() {
                     </div>
                 </motion.div>
             </div>
+
+            <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
         </div>
     );
 }

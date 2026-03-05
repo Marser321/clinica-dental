@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Calendar as CalendarIcon, Clock, ChevronRight, CheckCircle2, User, Phone } from 'lucide-react';
+import { X, Calendar as CalendarIcon, Clock, ChevronRight, CheckCircle2, User, Phone, Loader2 } from 'lucide-react';
+import { insforge } from '@/lib/insforge';
+import { format, parseISO, setHours, setMinutes, addMinutes } from 'date-fns';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -18,6 +20,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
         name: '',
         phone: ''
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     // Reset when closed
     useEffect(() => {
@@ -63,12 +66,51 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
     const nextStep = () => setStep(prev => prev + 1);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStep(4); // Pantalla de éxito
+        setIsLoading(true);
 
-        // Simular envío a WhatsApp o CRM
-        console.log('Reserva simulada:', selection);
+        try {
+            const [hourStr, minStr] = selection.time.split(':');
+            const baseDate = parseISO(selection.date);
+            const startDate = setMinutes(setHours(baseDate, parseInt(hourStr)), parseInt(minStr));
+            const endDate = addMinutes(startDate, 60);
+
+            // PostgreSQL tsrange format
+            const timeRange = `[${format(startDate, "yyyy-MM-dd HH:mm:ss")}, ${format(endDate, "yyyy-MM-dd HH:mm:ss")})`;
+
+            const [firstName, ...lastNames] = selection.name.split(' ');
+            const lastName = lastNames.join(' ') || '-';
+
+            // 1. Crear el paciente (anónimo)
+            const { data: patient, error: patientError } = await insforge.database
+                .from('patients')
+                .insert({
+                    first_name: firstName,
+                    last_name: lastName,
+                    phone: selection.phone,
+                })
+                .select()
+                .single();
+
+            if (patient && !patientError) {
+                // 2. Crear la cita
+                await insforge.database.from('appointments').insert({
+                    patient_id: patient.id,
+                    doctor_id: '11111111-1111-1111-1111-111111111111',
+                    service_id: '44444444-4444-4444-4444-444444444444', // Limpieza Dental (mock ID for demo)
+                    time_range: timeRange,
+                    status: 'scheduled',
+                    notes: `Especialidad requerida: ${selection.specialty}`
+                });
+            }
+
+            setStep(4); // Pantalla de éxito
+        } catch (error) {
+            console.error('Error al agendar cita:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -223,13 +265,16 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                             {/* Actions */}
                                             <div className="flex justify-between items-center mt-8 border-t border-white/10 pt-4">
                                                 <button
+                                                    type="button"
                                                     onClick={() => setStep(1)}
                                                     className="text-slate-400 font-medium text-sm hover:text-white"
+                                                    disabled={isLoading}
                                                 >
                                                     Volver
                                                 </button>
                                                 <button
-                                                    disabled={!selection.date || !selection.time}
+                                                    type="button"
+                                                    disabled={!selection.date || !selection.time || isLoading}
                                                     onClick={nextStep}
                                                     className="btn-primary py-2.5 px-6 disabled:opacity-50 disabled:pointer-events-none"
                                                 >
@@ -292,14 +337,16 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                                         type="button"
                                                         onClick={() => setStep(2)}
                                                         className="text-slate-400 font-medium text-sm hover:text-white"
+                                                        disabled={isLoading}
                                                     >
                                                         Volver
                                                     </button>
                                                     <button
                                                         type="submit"
-                                                        className="btn-primary py-3 px-8 text-base shadow-lg shadow-red-500/20"
+                                                        disabled={isLoading || !selection.name || !selection.phone}
+                                                        className="btn-primary py-3 px-8 text-base shadow-lg shadow-red-500/20 disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2"
                                                     >
-                                                        Confirmar Turno
+                                                        {isLoading ? <Loader2 size={18} className="animate-spin" /> : 'Confirmar Turno'}
                                                     </button>
                                                 </div>
                                             </form>
