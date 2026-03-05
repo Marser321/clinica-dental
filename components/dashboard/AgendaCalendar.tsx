@@ -37,7 +37,8 @@ export function AgendaCalendar() {
                 const parsed = data.map((app: any) => {
                     const match = app.time_range.match(/\["?(.*?)"?,\s*"?(.*?)"?\)/);
                     if (!match) return null;
-                    const startDate = new Date(match[1]);
+                    const dateStr = match[1].replace(' ', 'T');
+                    const startDate = new Date(dateStr);
 
                     return {
                         id: app.id,

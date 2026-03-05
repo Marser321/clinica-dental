@@ -83,7 +83,11 @@ export default function SolicitudesPage() {
     const parseDateRange = (range: string) => {
         const match = range.match(/\["?(.*?)"?,\s*"?(.*?)"?\)/);
         if (!match) return { date: '', time: '' };
-        const d = parseISO(match[1]);
+
+        // Reemplazar espacio intermedio con 'T' para cumplimiento ISO (Safari/Firefox fix)
+        const dateStr = match[1].replace(' ', 'T');
+        const d = parseISO(dateStr);
+
         return {
             date: format(d, "dd 'de' MMMM", { locale: es }),
             time: format(d, 'HH:mm'),
