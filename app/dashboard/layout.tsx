@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Calendar, Users, CreditCard, Settings, LayoutDashboard } from 'lucide-react';
-import { UserButton } from '@insforge/nextjs';
+import { Calendar, Users, CreditCard, Settings, LayoutDashboard, User } from 'lucide-react';
 
 const sidebarLinks = [
     { icon: LayoutDashboard, label: 'Resumen', href: '/dashboard' },
@@ -52,10 +51,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </nav>
 
                 <div className="mt-auto flex items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl">
-                    <div className="scale-110"><UserButton /></div>
+                    <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center border border-white/20">
+                        <User size={14} className="text-white" />
+                    </div>
                     <div className="flex flex-col flex-1 overflow-hidden">
-                        <span className="text-xs font-medium text-white truncate">Mi Cuenta</span>
-                        <span className="text-[10px] text-slate-400">Ajustes de perfil</span>
+                        <span className="text-xs font-medium text-white truncate">Cuenta Demo</span>
+                        <span className="text-[10px] text-slate-400">Dr. Principal</span>
                     </div>
                 </div>
             </aside>

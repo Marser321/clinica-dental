@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone } from 'lucide-react';
 import { BookingModal } from '@/components/ui/BookingModal';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@insforge/nextjs';
 
 const navLinks = [
     { label: 'Inicio', href: '#inicio' },
@@ -78,14 +77,9 @@ export function Header() {
                                 <span>Llamar</span>
                             </a>
                             <div className="w-px h-6 bg-white/10 mx-2"></div>
-                            <SignedOut>
-                                <SignInButton>
-                                    <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Iniciar sesión</button>
-                                </SignInButton>
-                            </SignedOut>
-                            <SignedIn>
-                                <UserButton />
-                            </SignedIn>
+                            <Link href="/dashboard" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                Entrar al CRM (Demo)
+                            </Link>
                             <button
                                 onClick={() => setIsBookingOpen(true)}
                                 className="btn-primary text-sm !py-2.5 !px-5"
@@ -139,16 +133,13 @@ export function Header() {
 
                             <div className="w-full max-w-[200px] h-px bg-white/10 my-2"></div>
 
-                            <SignedOut>
-                                <SignInButton>
-                                    <button className="text-xl font-display font-medium text-slate-300 hover:text-white transition-colors">Iniciar sesión</button>
-                                </SignInButton>
-                            </SignedOut>
-                            <SignedIn>
-                                <div className="scale-125 my-2 flex justify-center">
-                                    <UserButton />
-                                </div>
-                            </SignedIn>
+                            <Link
+                                href="/dashboard"
+                                onClick={() => setMobileOpen(false)}
+                                className="text-xl font-display font-medium text-slate-300 hover:text-white transition-colors"
+                            >
+                                Entrar al CRM (Demo)
+                            </Link>
 
                             <button
                                 onClick={() => {
